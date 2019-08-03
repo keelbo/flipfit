@@ -22,36 +22,11 @@ enum slotNo
     EightEvening,
 };
 
-class Workout
-{
-private:
-    int capacity;
-    vector<User *> bookedUserList;
-
-public:
-    Workout(int);
-    bool bookWorkout(User *);
-};
-
-class Slot
-{
-private:
-    int id;
-    // workoutType, workout
-    unordered_map<string, Workout *> workoutList;
-
-public:
-    Slot(int);
-    Workout *getWorkout(string);
-    vector<Workout *> getAvailableWorkouts();
-};
-
 class User
 {
 private:
     string userID;
     // string email;
-    unordered_map<vector<int, int>, Slot> bookedSlots;
 
 public:
     User(string);
@@ -70,17 +45,41 @@ public:
     User *registerUser(User *);
 };
 
+class Workout
+{
+private:
+    int capacity;
+    vector<string> bookedUserList; // list of userId's
+
+public:
+    Workout(int);
+    bool bookWorkout(string);
+};
+
+class Slot
+{
+private:
+    int id;
+    // workoutType, workout
+    unordered_map<string, Workout *> workoutList;
+
+public:
+    Slot(int);
+    Workout *getWorkout(string);
+    vector<Workout *> getAvailableWorkouts();
+};
+
 class WorkStation
 {
 private:
     string place;
     // Address address;
     // day , month, slotNo, slot
-    map<map<vector<int, int>, int>, Slot> slotList;
+    unordered_map<int, unordered_map<int, unordered_map<int, Slot >>> slotList;
 
 public:
     WorkStation();
-    void init();
+    void init(string);
     void printAvailableSlots();
     // day, month
     void printAvailableSlots(int, int);

@@ -1,4 +1,4 @@
-#include "flipfit.h";
+#include "flipfit.h"
 
 int main(int argc, char const *argv[])
 {
@@ -6,7 +6,7 @@ int main(int argc, char const *argv[])
     // We can support WorkstationList
     string BELLANDUR = "bellandur";
     WorkStation *bellandur = new WorkStation();
-    bellandur->init();
+    bellandur->init(BELLANDUR);
 
     User *loggedUser = nullptr;
     UserList *userList = new UserList();
@@ -40,6 +40,8 @@ int main(int argc, char const *argv[])
                     cout << "Please register" << endl;
                 }
             }
+        case 'q':
+            return 0;
 
         default:
             break;

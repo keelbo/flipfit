@@ -1,6 +1,6 @@
-#include "flipfit.h";
+#include "flipfit.h"
 
-// User::User(string _userId) : userID(_userId) {}
+User::User(string _userId) : userID(_userId) {}
 
 string User::getUserId()
 {
@@ -25,11 +25,11 @@ User *UserList::registerUser(User *user)
 
 Workout::Workout(int _capacity) : capacity(_capacity) {}
 
-bool Workout::bookWorkout(User *user)
+bool Workout::bookWorkout(string userId)
 {
     if (bookedUserList.size() < capacity)
     {
-        bookedUserList.push_back(user);
+        bookedUserList.push_back(userId);
         return true;
     }
     return false;
@@ -50,10 +50,17 @@ vector<Workout *> Slot::getAvailableWorkouts()
 {
 }
 
-// WorkStation::WorkStation() {}
+WorkStation::WorkStation() {}
 
-void WorkStation::init()
+void WorkStation::init(string place)
 {
+    this->place = place;
+    Slot *temp;
+
+    // unordered_map<int, unordered_map<int, unordered_map<int, Slot >>>
+    // unordered_map<int, unordered_map<int, Slot>> iisTemp;
+    // unordered_map<int, Slot> isTemp;
+    // slotList[1] =
 }
 
 void WorkStation::printAvailableSlots()
@@ -71,19 +78,6 @@ void WorkStation::printAvailableSlots()
 void WorkStation::printAvailableSlots(int day, int month)
 {
     vector<int> slotNos{1, 2, 3, 4, 5, 6};
-    for (int i = 0; i < slotNos.size(); i++)
-    {
-        vector<int, int> temp{day, month};
-        map<vector<int, int>, int> mp;
-        mp[temp] = slotNos[i];
-        unordered_map<string, Workout *>::iterator itr;
-        // itr = slotList[mp].begin();
-        // while (itr != slotList[mp].end())
-        // {
-
-        //     itr++;
-        // }
-    }
 }
 
 void WorkStation::bookSlot(User *loggedUser)
